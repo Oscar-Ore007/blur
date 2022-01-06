@@ -28,14 +28,14 @@
       }
 
       img {
-          padding: let(--spacing);
-          background: let(--base);
-          filter: blur(let(--blur));
+          padding: var(--spacing);
+          background: var(--base);
+          filter: blur(var(--blur));
 
       }
 
       .h1 {
-          color: let(--base);
+          color:  var(--base);
       }
 
     /*
@@ -61,6 +61,16 @@
   </style>
 
   <script>
+      const inputs = document.querySelectorAll('.controls input'); 
+
+      function handleUpdate() {
+          const suffix = this.dataset.sizing || '';
+          document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      }
+
+
+      inputs.forEach(input => input.addEventListener('change', handleUpdate)); 
+      inputs.forEach(input => input.addEventListener('mousemove', handleUpdate)); 
   </script>
 
 </body>
